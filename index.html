@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FastBites | Delicious Fast Food</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo">
+        <img src="images/logo.png" alt="FastBites Logo" />
+        <span>FastBites</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+      </ul>
+      <div class="cart-icon" onclick="openCart()">
+        🛒 <span id="cart-count">0</span>
+      </div>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+      <video autoplay muted loop playsinline class="back-video">
+        <source src="images/4008533-hd_2048_1080_25fps.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-content">
+        <h1>Craving Something <span class="highlight">Delicious?</span></h1>
+        <p>Fresh ingredients, fast delivery, and the best taste in town.</p>
+        <a href="#menu" class="btn-primary">Order Now</a>
+      </div>
+    </header>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+      <h2>Our Popular Menu</h2>
+      <div class="menu-filters">
+        <button class="filter-btn active" onclick="filterMenu('all', this)">
+          All
+        </button>
+        <button class="filter-btn" onclick="filterMenu('burgers', this)">
+          Burgers
+        </button>
+        <button class="filter-btn" onclick="filterMenu('sides', this)">
+          Sides
+        </button>
+        <button class="filter-btn" onclick="filterMenu('drinks', this)">
+          Drinks
+        </button>
+        <button class="filter-btn" onclick="filterMenu('wraps', this)">
+          Wraps
+        </button>
+        <button class="filter-btn" onclick="filterMenu('tacos', this)">
+          Tacos
+        </button>
+        <button class="filter-btn" onclick="filterMenu('pizza', this)">
+          Pizza
+        </button>
+        <button class="filter-btn" onclick="filterMenu('salads', this)">
+          Salads
+        </button>
+        <button class="filter-btn" onclick="filterMenu('desserts', this)">
+          Desserts
+        </button>
+      </div>
+      <div class="menu-grid">
+        <!-- Item 1 -->
+        <div class="food-card" data-category="burgers">
+          <img src="images/classic_burger.webp" alt="Classic Burger" />
+          <div class="food-info">
+            <h3>Classic Burger</h3>
+            <p>Juicy beef patty with fresh lettuce and tomato.</p>
+            <div class="price-row">
+              <span class="price">8.99 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Classic Burger', 8.99, this)"
+                >
+                  Add To cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 1b (New Burger) -->
+        <div class="food-card" data-category="burgers">
+          <img src="images/bacon burger.webp" alt="Bacon Burger" />
+          <div class="food-info">
+            <h3>Bacon Burger</h3>
+            <p>Beef patty topped with crispy bacon and cheese.</p>
+            <div class="price-row">
+              <span class="price">9.99 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Bacon Burger', 9.99, this)"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Burger 1 -->
+        <div class="food-card" data-category="burgers">
+          <img src="images/Mushroom Swiss.webp" alt="Mushroom Swiss" />
+          <div class="food-info">
+            <h3>Mushroom Swiss</h3>
+            <p>Topped with sautéed mushrooms and swiss cheese.</p>
+            <div class="price-row">
+              <span class="price">10.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Mushroom Swiss', 10.50, this)"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Burger 2 -->
+        <div class="food-card" data-category="burgers">
+          <img
+            src="images/Double Cheeseburger.webp"
+            alt="Double Cheeseburger"
+          />
+          <div class="food-info">
+            <h3>Double Cheeseburger</h3>
+            <p>Two beef patties with double cheddar cheese.</p>
+            <div class="price-row">
+              <span class="price">11.99 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Double Cheeseburger', 11.99, this)"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Burger 3 -->
+        <div class="food-card" data-category="burgers">
+          <img
+            src="images/spicy_chicken_burger.webp"
+            alt="Spicy Chicken Burger"
+          />
+          <div class="food-info">
+            <h3>Spicy Chicken</h3>
+            <p>Crispy chicken fillet with spicy mayo and pickles.</p>
+            <div class="price-row">
+              <span class="price">9.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Spicy Chicken', 9.50, this)"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="food-card" data-category="sides">
+          <img src="images/spicy_fries.webp" alt="Spicy Fries" />
+          <div class="food-info">
+            <h3>Spicy Fries</h3>
+            <p>Crispy fries topped with our secret spicy seasoning.</p>
+            <div class="price-row">
+              <span class="price">4.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Spicy Fries', 4.50, this)"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2b (New Side) -->
+        <div class="food-card" data-category="sides">
+          <img src="images/onion rings.webp" alt="Onion Rings" />
+          <div class="food-info">
+            <h3>Onion Rings</h3>
+            <p>Golden crispy fried onion rings.</p>
+            <div class="price-row">
+              <span class="price">5.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Onion Rings', 5.50, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Side 1 -->
+        <div class="food-card" data-category="sides">
+          <img src="images/Mozzarella Sticks.webp" alt="Mozzarella Sticks" />
+          <div class="food-info">
+            <h3>Mozzarella Sticks</h3>
+            <p>Golden fried cheese sticks with marinara sauce.</p>
+            <div class="price-row">
+              <span class="price">6.00 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Mozzarella Sticks', 6.00, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Side 2 -->
+        <div class="food-card" data-category="sides">
+          <img src="images/Coleslaw.webp" alt="Coleslaw" />
+          <div class="food-info">
+            <h3>Coleslaw</h3>
+            <p>Fresh cabbage and carrot mix in creamy dressing.</p>
+            <div class="price-row">
+              <span class="price">3.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Coleslaw', 3.50, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Side 3 -->
+        <div class="food-card" data-category="sides">
+          <img src="images/cheesy_fries.webp" alt="Cheesy Fries" />
+          <div class="food-info">
+            <h3>Cheesy Fries</h3>
+            <p>Crispy fries smothered in melted cheddar cheese.</p>
+            <div class="price-row">
+              <span class="price">5.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Cheesy Fries', 5.50, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="food-card" data-category="drinks">
+          <img src="images/mega shakee.webp" alt="Mega Shake" />
+          <div class="food-info">
+            <h3>Mega Shake</h3>
+            <p>Thick chocolate milkshake with whipped cream.</p>
+            <div class="price-row">
+              <span class="price">5.99 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Mega Shake', 5.99, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3b (New Drink) -->
+        <div class="food-card" data-category="drinks">
+          <img src="images/ice lemoned.webp" alt="Iced Lemonade" />
+          <div class="food-info">
+            <h3>Iced Lemonade</h3>
+            <p>Freshly squeezed lemons with ice.</p>
+            <div class="price-row">
+              <span class="price">3.99 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Iced Lemonade', 3.99, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Drink 1 -->
+        <div class="food-card" data-category="drinks">
+          <img src="images/Cola.webp" alt="Cola" />
+          <div class="food-info">
+            <h3>Cola</h3>
+            <p>Refreshing ice-cold cola.</p>
+            <div class="price-row">
+              <span class="price">2.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button class="add-btn" onclick="addToCart('Cola', 2.50, this)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Drink 2 -->
+        <div class="food-card" data-category="drinks">
+          <img src="images/orange_juice.webp" alt="Orange Juice" />
+          <div class="food-info">
+            <h3>Orange Juice</h3>
+            <p>Freshly squeezed orange juice.</p>
+            <div class="price-row">
+              <span class="price">4.00 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Orange Juice', 4.00, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Drink 3 -->
+        <div class="food-card" data-category="drinks">
+          <img src="images/iced_coffee.webp" alt="Iced Coffee" />
+          <div class="food-info">
+            <h3>Iced Coffee</h3>
+            <p>Chilled coffee with milk and sugar.</p>
+            <div class="price-row">
+              <span class="price">5.00 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Iced Coffee', 5.00, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="food-card" data-category="wraps">
+          <img src="images/veggie_wrap.webp" alt="Veggie Wrap" />
+          <div class="food-info">
+            <h3>Veggie Wrap</h3>
+            <p>Grilled vegetables wrapped in a warm tortilla.</p>
+            <div class="price-row">
+              <span class="price">7.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Veggie Wrap', 7.50, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4b (New Wrap) -->
+        <div class="food-card" data-category="wraps">
+          <img src="images/chicken wrap.webp" alt="Chicken Wrap" />
+          <div class="food-info">
+            <h3>Chicken Wrap</h3>
+            <p>Grilled chicken with caesar dressing.</p>
+            <div class="price-row">
+              <span class="price">8.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Chicken Wrap', 8.50, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Wrap 1 -->
+        <div class="food-card" data-category="wraps">
+          <img src="images/beef_wrap.webp" alt="Beef Wrap" />
+          <div class="food-info">
+            <h3>Beef Wrap</h3>
+            <p>Seasoned beef strips with veggies in a tortilla.</p>
+            <div class="price-row">
+              <span class="price">9.00 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Beef Wrap', 9.00, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Wrap 2 -->
+        <div class="food-card" data-category="wraps">
+          <img src="images/Falafel Wrap.webp" alt="Falafel Wrap" />
+          <div class="food-info">
+            <h3>Falafel Wrap</h3>
+            <p>Crispy falafel with tahini sauce and salad.</p>
+            <div class="price-row">
+              <span class="price">7.00 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Falafel Wrap', 7.00, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Wrap 3 -->
+        <div class="food-card" data-category="wraps">
+          <img src="images/spicy_tuna_wrap.webp" alt="Spicy Tuna Wrap" />
+          <div class="food-info">
+            <h3>Spicy Tuna Wrap</h3>
+            <p>Tuna salad with spicy mayo and lettuce.</p>
+            <div class="price-row">
+              <span class="price">8.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Spicy Tuna Wrap', 8.50, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item Tacos 1 -->
+        <div class="food-card" data-category="tacos">
+          <img src="images/beef_tacos.webp" alt="Beef Taco" />
+          <div class="food-info">
+            <h3>Beef Taco</h3>
+            <p>Seasoned ground beef with lettuce and cheese.</p>
+            <div class="price-row">
+              <span class="price">6.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Beef Taco', 6.50, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item Tacos 2 -->
+        <div class="food-card" data-category="tacos">
+          <img src="images/chicken_tacos.webp" alt="Chicken Taco" />
+          <div class="food-info">
+            <h3>Chicken Taco</h3>
+            <p>Grilled chicken with salsa and cilantro.</p>
+            <div class="price-row">
+              <span class="price">7.00 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Chicken Taco', 7.00, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item Tacos 3 -->
+        <div class="food-card" data-category="tacos">
+          <img src="images/spicy_shrimp_tacos.webp" alt="Spicy Shrimp Taco" />
+          <div class="food-info">
+            <h3>Spicy Shrimp Taco</h3>
+            <p>Spicy shrimp with cabbage slaw and lime.</p>
+            <div class="price-row">
+              <span class="price">8.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Spicy Shrimp Taco', 8.50, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="food-card" data-category="pizza">
+          <img src="images/pepperoni_pizza.webp" alt="Pepperoni Pizza" />
+          <div class="food-info">
+            <h3>Pepperoni Pizza</h3>
+            <p>Classic pepperoni with mozzarella cheese.</p>
+            <div class="price-row">
+              <span class="price">12.99 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Pepperoni Pizza', 12.99, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 5b (New Pizza) -->
+        <div class="food-card" data-category="pizza">
+          <img src="images/viggie pizza.webp" alt="Veggie Pizza" />
+          <div class="food-info">
+            <h3>Veggie Pizza</h3>
+            <p>Loaded with peppers, onions, and mushrooms.</p>
+            <div class="price-row">
+              <span class="price">11.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Veggie Pizza', 11.50, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Pizza 1 -->
+        <div class="food-card" data-category="pizza">
+          <img src="images/Margherita Pizza.webp" alt="Margherita Pizza" />
+          <div class="food-info">
+            <h3>Margherita Pizza</h3>
+            <p>Classic tomato sauce with fresh mozzarella and basil.</p>
+            <div class="price-row">
+              <span class="price">10.00 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Margherita Pizza', 10.00, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Pizza 2 -->
+        <div class="food-card" data-category="pizza">
+          <img src="images/bbq_chicken_pizza_2.webp" alt="BBQ Chicken Pizza" />
+          <div class="food-info">
+            <h3>BBQ Chicken Pizza</h3>
+            <p>Grilled chicken with BBQ sauce and red onions.</p>
+            <div class="price-row">
+              <span class="price">13.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('BBQ Chicken Pizza', 13.50, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Pizza 3 -->
+        <div class="food-card" data-category="pizza">
+          <img src="images/Hawaiian Pizza.png" alt="Hawaiian Pizza" />
+          <div class="food-info">
+            <h3>Hawaiian Pizza</h3>
+            <p>Ham and pineapple with mozzarella cheese.</p>
+            <div class="price-row">
+              <span class="price">12.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Hawaiian Pizza', 12.50, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 6 -->
+        <div class="food-card" data-category="salads">
+          <img src="images/caesar_salad.webp" alt="Caesar Salad" />
+          <div class="food-info">
+            <h3>Caesar Salad</h3>
+            <p>Fresh romaine lettuce with croutons and parmesan.</p>
+            <div class="price-row">
+              <span class="price">6.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Caesar Salad', 6.50, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Salad 1 -->
+        <div class="food-card" data-category="salads">
+          <img src="images/greek_salad.webp" alt="Greek Salad" />
+          <div class="food-info">
+            <h3>Greek Salad</h3>
+            <p>Cucumbers, tomatoes, olives, and feta cheese.</p>
+            <div class="price-row">
+              <span class="price">7.00 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Greek Salad', 7.00, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Salad 2 -->
+        <div class="food-card" data-category="salads">
+          <img src="images/Garden Salad.webp" alt="Garden Salad" />
+          <div class="food-info">
+            <h3>Garden Salad</h3>
+            <p>Mixed greens with cherry tomatoes and vinaigrette.</p>
+            <div class="price-row">
+              <span class="price">5.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Garden Salad', 5.50, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Salad 3 -->
+        <div class="food-card" data-category="salads">
+          <img src="images/tuna_salad.webp" alt="Tuna Salad" />
+          <div class="food-info">
+            <h3>Tuna Salad</h3>
+            <p>Tuna chunks with mixed vegetables and egg.</p>
+            <div class="price-row">
+              <span class="price">8.00 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Tuna Salad', 8.00, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 7 -->
+        <div class="food-card" data-category="desserts">
+          <img src="images/chocolate brownie.webp" alt="Chocolate Brownie" />
+          <div class="food-info">
+            <h3>Chocolate Brownie</h3>
+            <p>Rich chocolate brownie with a scoop of vanilla ice cream.</p>
+            <div class="price-row">
+              <span class="price">4.99 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Chocolate Brownie', 4.99, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Dessert 1 -->
+        <div class="food-card" data-category="desserts">
+          <img src="images/cheesecake.webp" alt="Cheesecake" />
+          <div class="food-info">
+            <h3>Cheesecake</h3>
+            <p>Creamy cheesecake with a graham cracker crust.</p>
+            <div class="price-row">
+              <span class="price">5.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Cheesecake', 5.50, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Dessert 2 -->
+        <div class="food-card" data-category="desserts">
+          <img src="images/Apple Pie.webp" alt="Apple Pie" />
+          <div class="food-info">
+            <h3>Apple Pie</h3>
+            <p>Warm apple pie with cinnamon and crust.</p>
+            <div class="price-row">
+              <span class="price">4.50 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Apple Pie', 4.50, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Dessert 3 -->
+        <div class="food-card" data-category="desserts">
+          <img src="images/Ice Cream Sundae.webp" alt="Ice Cream Sundae" />
+          <div class="food-info">
+            <h3>Ice Cream Sundae</h3>
+            <p>Vanilla ice cream with chocolate syrup and a cherry.</p>
+            <div class="price-row">
+              <span class="price">6.00 DH</span>
+              <div class="cart-actions">
+                <input type="number" class="qty-input" value="1" min="1" />
+                <button
+                  class="add-btn"
+                  onclick="addToCart('Ice Cream Sundae', 6.00, this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="load-more-container">
+        <button id="load-more-btn" class="btn-primary" onclick="loadMore()">
+          Load More
+        </button>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+      <h2>What Our Customers Say</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p>"The best burger I've ever had! Fast delivery too."</p>
+          <div class="customer-info">
+            <h4>- Sarah J.</h4>
+            <div class="stars">★★★★★</div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p>"Love the spicy fries. Highly recommended!"</p>
+          <div class="customer-info">
+            <h4>- Mike T.</h4>
+            <div class="stars">★★★★☆</div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p>"Great service and delicious shakes."</p>
+          <div class="customer-info">
+            <h4>- Emily R.</h4>
+            <div class="stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+      <p>&copy; 2024 FastBites. All rights reserved.</p>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeCart()">&times;</span>
+        <h2>Checkout</h2>
+        <div
+          id="cart-items-container"
+          style="
+            margin-bottom: 1rem;
+            max-height: 150px;
+            overflow-y: auto;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+          "
+        ></div>
+        <p>Total Items: <span id="modal-cart-count">0</span></p>
+        <p>Total Price: <span id="modal-cart-total">0.00</span> DH</p>
+
+        <form id="checkout-form" onsubmit="placeOrder(event)">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" required placeholder="John Doe" />
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input
+              type="text"
+              id="address"
+              required
+              placeholder="123 Food St"
+            />
+          </div>
+          <div style="display: flex; gap: 10px; margin-top: 10px">
+            <button
+              type="button"
+              class="btn-secondary"
+              onclick="clearCart()"
+              style="flex: 1"
+            >
+              Clear Cart
+            </button>
+            <button
+              type="submit"
+              class="btn-primary"
+              style="flex: 1; margin-top: 0"
+            >
+              Place Order
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
